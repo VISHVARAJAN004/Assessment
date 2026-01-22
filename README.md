@@ -46,7 +46,7 @@ Implement the following operations:
 
 - Deposit amount  
 - Withdraw amount  
-  - Throw `InsufficientBalanceException` if balance is insufficient  
+- Throw `InsufficientBalanceException` if balance is insufficient  
 - Display all accounts  
 - Find accounts with balance greater than 50,000 using Java 8 Streams  
 
