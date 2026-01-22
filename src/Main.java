@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -11,19 +12,23 @@ public class Main {
         account.put(6, new Account(882893486169L, "Sam", 40000));
 
         long depositAccount = 882893486169L;
-        account.entrySet().stream().filter(a->a.getValue().accountNo== depositAccount).forEach(a->a.getValue().deposit(20000));
-        System.out.println("afterDeposit"+account);
+        account.entrySet().stream().filter(a -> a.getValue().accountNo == depositAccount).forEach(a -> a.getValue().deposit(20000));
+        System.out.println("afterDeposit" + account);
 
-        long withdrawAccount = 534312455254L;
-        account.entrySet().stream().filter(a -> a.getValue().accountNo == withdrawAccount).forEach(a -> {
-                    AccountHelper accountHelper = new AccountHelper();
-                    accountHelper.transferMoney(a.getValue(), 20000);
-                });
-        System.out.println("afterTransfer"+account);
+        long withdrawAcc = 882893486169L;
+        long targetAcc = 123456789101L;
+        account.entrySet().stream().filter(a -> a.getValue().accountNo == withdrawAcc).forEach(s -> {account.entrySet().stream().filter(a -> a.getValue().accountNo == targetAcc).forEach(t -> {
+            AccountHelper accountHelper = new AccountHelper();
+            accountHelper.transferMoney(s.getValue(), t.getValue(), 20000);
+            });
+        });
+        System.out.println("afterTransfer" + account);
 
         account.values().forEach(System.out::println);
 
         System.out.println("Balance greater than 50k");
-        account.values().stream().filter(a -> a.getBalance() > 50000).forEach(System.out::println);
+        account.values().stream()
+                .filter(a -> a.getBalance() > 50000)
+                .forEach(System.out::println);
     }
 }
